@@ -1,7 +1,7 @@
 #/usr/bin/env bash
 
 BIN_PATH=build/debug
-BIN_FILE=${BIN_PATH}/arvos
+BIN_FILE=${BIN_PATH}/arvos.bin
 
 PATH=$PATH:./xpacks/.bin
 
@@ -29,17 +29,9 @@ start() {
     flags="-gdb tcp::1234 -S"
     path="build/debug"
   fi
-#  load_flags="-bios none -kernel ${BIN_FILE}"
-  load_flags="-bios fw_jump.bin -device loader,file=${BIN_FILE},addr=0x80000000"
-  qemu-system-riscv32 \
-    -machine virt,dumpdtb=virt.dtb \
-    -m 2G \
-    -nographic \
-    -monitor telnet:127.0.0.1:4321,server,nowait \
-    $load_flags \
-    $flags
-    #    -no-reboot \
-    #    -no-shutdown \
+  sudo xfel ddr d1
+  sudo xfel write 0x40000000 ${BIN_FILE}
+  sudo xfel exec 0x40000000
 }
 
 stop() {
