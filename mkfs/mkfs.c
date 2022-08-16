@@ -144,12 +144,7 @@ main(int argc, char *argv[])
     if((fd = open(argv[i], 0)) < 0)
       die(argv[i]);
 
-    // Skip leading _ in name when writing to file system.
-    // The binaries are named _rm, _cat, etc. to keep the
-    // build operating system from trying to execute them
-    // in place of system binaries like rm and cat.
-    if(shortname[0] == '_')
-      shortname += 1;
+    printf("%s -> %s \n", argv[i], shortname);
 
     inum = ialloc(T_FILE);
 
