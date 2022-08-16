@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 BIN_PATH=build/debug
 BIN_FILE=${BIN_PATH}/arvos.bin
