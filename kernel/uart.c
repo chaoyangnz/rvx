@@ -63,7 +63,7 @@ uartinit(void)
 // from interrupts; it's only suitable for use
 // by write().
 void
-uartputc(int c)
+__uartputc(int c)
 {
   acquire(&uart_tx_lock);
 
@@ -87,12 +87,21 @@ uartputc(int c)
   }
 }
 
+void
+uartputc(int c) {
+  if (c == '\n') {
+    __uartputc('\r');
+  }
+  __uartputc(c);
+}
+
+
 // alternate version of uartputc() that doesn't 
 // use interrupts, for use by kernel printf() and
 // to echo characters. it spins waiting for the uart's
 // output register to be empty.
 void
-uartputc_sync(int c)
+__uartputc_sync(int c)
 {
   push_off();
 
@@ -107,6 +116,14 @@ uartputc_sync(int c)
   WriteReg(THR, c);
 
   pop_off();
+}
+
+void
+uartputc_sync(int c) {
+  if (c == '\n') {
+    __uartputc_sync('\r');
+  }
+  __uartputc_sync(c);
 }
 
 // if the UART is idle, and a character is waiting

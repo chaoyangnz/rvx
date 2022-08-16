@@ -65,6 +65,15 @@ xint(uint x)
   return y;
 }
 
+char *basename(char const *path)
+{
+    char *s = strrchr(path, '/');
+    if (!s)
+        return strdup(path);
+    else
+        return strdup(s + 1);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -128,12 +137,7 @@ main(int argc, char *argv[])
   iappend(rootino, &de, sizeof(de));
 
   for(i = 2; i < argc; i++){
-    // get rid of "user/"
-    char *shortname;
-    if(strncmp(argv[i], "user/", 5) == 0)
-      shortname = argv[i] + 5;
-    else
-      shortname = argv[i];
+    char *shortname = basename(argv[i]);
     
     assert(index(shortname, '/') == 0);
 

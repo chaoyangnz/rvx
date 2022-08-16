@@ -30,8 +30,10 @@ start() {
     path="build/debug"
   fi
   sudo xfel ddr d1
+#  sudo xfel write 0x80000000 fw_jump.bin
   sudo xfel write 0x40000000 ${BIN_FILE}
   sudo xfel exec 0x40000000
+#  sudo xfel exec 0x80000000
 }
 
 stop() {
