@@ -20,6 +20,7 @@ set(CMAKE_LINKER ${RISCV}-ld)
 set(CMAKE_C_FLAGS "")
 set(CMAKE_ASM_FLAGS "")
 set(CMAKE_EXE_LINKER_FLAGS "")
+include_directories(${CMAKE_SOURCE_DIR})
 
 # kernel
 set(CMAKE_C_FLAGS_DEBUG "-ggdb")
@@ -90,19 +91,15 @@ add_custom_command(
 
 add_library(ulib user/ulib.c user/printf.c user/umalloc.c user/usys.S)
 target_compile_options(ulib PRIVATE ${CMAKE_C_FLAGS})
-target_include_directories(ulib PRIVATE ${CMAKE_SOURCE_DIR})
 
 set(USER_PROGRAMS init cat echo grep kill ln ls mkdir rm sh wc pyramid)
 set(USER_PROGRAM_PATHS)
 foreach(USER_PROGRAM ${USER_PROGRAMS})
-#    get_filename_component(BIN ${SOURCE} NAME_WE)
     add_executable(${USER_PROGRAM} user/${USER_PROGRAM}.c)
 
     target_compile_options(${USER_PROGRAM} PRIVATE ${C_FLAGS})
-    target_include_directories(${USER_PROGRAM} PRIVATE ${CMAKE_SOURCE_DIR})
     target_link_options(${USER_PROGRAM} PRIVATE ${LD_FLAGS} -N -e main -Ttext 0)
     target_link_libraries(${USER_PROGRAM} ulib)
-#    set_target_properties(${USER_PROGRAM} PROPERTIES OUTPUT_NAME _${USER_PROGRAM})
 
     list(APPEND USER_PROGRAM_PATHS ${CMAKE_CURRENT_BINARY_DIR}/${USER_PROGRAM})
 endforeach()
