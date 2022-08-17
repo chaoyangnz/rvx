@@ -22,7 +22,8 @@ main()
     consoleinit();
     printfinit();
     printf("\n");
-    printf("ARVOS kernel is booting\n");
+    printf(" +-+-+-+-+-+\n |a|r|v|o|s|\n +-+-+-+-+-+\n");
+    printf("kernel is booting\n");
     printf("\n");
     kinit();         // physical page allocator
     kvminit();       // create kernel page table
