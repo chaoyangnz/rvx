@@ -1,7 +1,9 @@
 #ifndef __D1_REG_CCU_H__
 #define __D1_REG_CCU_H__
 
-#include "common.h"
+#include "types.h"
+
+#define D1_RISCV_CLOCK  24 // in MHz
 
 #define D1_CCU_BASE                        (0x02001000)    //D1 CCU
 
@@ -74,5 +76,6 @@
 
 void sys_clock_init(void);
 void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num);
+void delay(unsigned long us);
 
 #endif /* __D1_REG_CCU_H__ */

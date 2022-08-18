@@ -61,7 +61,6 @@ add_executable(kernel
     kernel/clk.c
     kernel/uartinit.c
     kernel/gpio.c
-    kernel/common.c
 )
 
 target_compile_options(kernel PRIVATE

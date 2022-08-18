@@ -1,9 +1,10 @@
 #ifndef __D1_UART_H__
 #define __D1_UART_H__
 
-#include "common.h"
+#include "types.h"
 
 //D1 debug uart use GPIOB8(TX0) and GPIOB9(RX0)
+
 #define UART_BASE   (0X02500000)
 #define UART1_BASE  (0X02500400)
 #define UART2_BASE  (0X02500800)

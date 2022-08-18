@@ -404,3 +404,15 @@ sfence_vma()
 
 typedef uint64 pte_t;
 typedef uint64 *pagetable_t; // 512 PTEs
+
+static inline void
+w_mem(virtual_addr_t addr, uint32_t value)
+{
+  *((volatile uint32_t *)(addr)) = value;
+}
+
+static inline uint32_t
+r_mem(virtual_addr_t addr)
+{
+  return( *((volatile uint32_t *)(addr)));
+}
