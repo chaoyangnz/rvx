@@ -11,8 +11,8 @@
 // * When done with the buffer, call brelse.
 // * Do not use the buffer after calling brelse.
 // * Only one process at a time can use a buffer,
-//     so do not keep them longer than necessary.
-
+// so do not keep them longer than necessary.
+// buffered I/O
 
 #include "types.h"
 #include "param.h"

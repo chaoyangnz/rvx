@@ -74,8 +74,4 @@
 #define CCU_RISCV_GATING_REG               (0xd04)
 #define CCU_RISCV_CFG_BGR_REG              (0xd0c)
 
-void sys_clock_init(void);
-void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num);
-void delay(unsigned long us);
-
 #endif /* __D1_REG_CCU_H__ */

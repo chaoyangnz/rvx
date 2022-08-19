@@ -1,9 +1,15 @@
+#ifndef __RISCV_H__
+#define __RISCV_H__
+// RISC-V register and memory manipulations
+
+#include "types.h"
+
 #define PMP_R (1L << 0)
 #define PMP_W (1L << 1)
 #define PMP_X (1L << 2)
 #define PMP_MATCH_NAPOT (3L << 3)
 
-static inline uint64 
+static inline uint64
 r_plicbase()
 {
   uint64 x;
@@ -11,7 +17,7 @@ r_plicbase()
   return x;
 }
 
-static inline uint64 
+static inline uint64
 r_mtime()
 {
   uint64 x;
@@ -404,15 +410,20 @@ sfence_vma()
 
 typedef uint64 pte_t;
 typedef uint64 *pagetable_t; // 512 PTEs
+typedef uint64 pde_t;
+
+typedef unsigned long  virtual_addr_t;
 
 static inline void
-w_mem(virtual_addr_t addr, uint32_t value)
+w_mem(virtual_addr_t addr, uint32 value)
 {
-  *((volatile uint32_t *)(addr)) = value;
+  *((volatile uint32 *)(addr)) = value;
 }
 
-static inline uint32_t
+static inline uint32
 r_mem(virtual_addr_t addr)
 {
-  return( *((volatile uint32_t *)(addr)));
+  return( *((volatile uint32 *)(addr)));
 }
+
+#endif

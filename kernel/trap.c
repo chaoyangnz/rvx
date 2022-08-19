@@ -15,7 +15,6 @@ extern char trampoline[], uservec[], userret[];
 void kernelvec();
 
 extern int devintr();
-extern void sys_uart_putc(int, char);
 
 void
 trapinit(void)

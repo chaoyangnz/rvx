@@ -59,7 +59,6 @@ add_executable(kernel
     kernel/plic.c
     kernel/ramdisk.c
     kernel/clk.c
-    kernel/uartinit.c
     kernel/gpio.c
 )
 

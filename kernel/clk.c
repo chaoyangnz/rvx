@@ -27,9 +27,10 @@
  */
 #include "clk.h"
 #include "riscv.h"
+#include "defs.h"
 
 static void set_pll_cpux_axi(void) {
-  uint32_t val;
+  uint32 val;
 
   /* Select cpux clock src to osc24m, axi divide ratio is 3, system apb clk ratio is 4 */
   w_mem(D1_CCU_BASE + CCU_RISCV_CLK_REG, (0 << 24) | (3 << 8) | (1 << 0));
@@ -86,7 +87,7 @@ static void set_pll_cpux_axi(void) {
 }
 
 static void set_pll_periph0(void) {
-  uint32_t val;
+  uint32 val;
 
   /* Periph0 has been enabled */
   if (r_mem(D1_CCU_BASE + CCU_PLL_PERI0_CTRL_REG) & (1 << 31))
@@ -141,7 +142,7 @@ static void set_dma(void) {
 }
 
 static void set_mbus(void) {
-  uint32_t val;
+  uint32 val;
 
   /* Reset mbus domain */
   val = r_mem(D1_CCU_BASE + CCU_MBUS_CLK_REG);
@@ -151,7 +152,7 @@ static void set_mbus(void) {
 }
 
 static void set_module(virtual_addr_t addr) {
-  uint32_t val;
+  uint32 val;
 
   if (!(r_mem(addr) & (1 << 31))) {
     val = r_mem(addr);
@@ -173,8 +174,8 @@ static void set_module(virtual_addr_t addr) {
   }
 }
 
-void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num) {
-  uint32_t val;
+void clk_enable_module_uart(virtual_addr_t addr, uint8 uart_num) {
+  uint32 val;
   /* Open the clock gate for uart */
   val = r_mem(addr);
   val |= 1 << (0 + uart_num);
@@ -206,8 +207,8 @@ void sys_clock_init(void) {
 // For 1μs, we need 24 CPU cycles
 void delay(unsigned long μs)
 {
-  uint64_t cycle1 = r_mtime();
-  uint64_t cycle2 = cycle1 + μs * 24;
+  uint64 cycle1 = r_mtime();
+  uint64 cycle2 = cycle1 + μs * 24;
   do {
     cycle1 = r_mtime();
   } while(cycle2 >= cycle1);
