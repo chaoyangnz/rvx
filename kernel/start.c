@@ -6,19 +6,13 @@
 
 void main();
 void timerinit();
+void pmpinit();
 
-// entry.S needs one stack per CPU.
+// entry.S needs one stack per CPU. global variable stack0
 __attribute__ ((aligned (16))) char stack0[4096 * NCPU];
 
-// a scratch area per CPU for machine-mode timer interrupts.
+// a scratch area per CPU for machine-mode timer interrupts. global variable timer_scratch
 uint64 timer_scratch[NCPU][5];
-
-// assembly code in kernelvec.S for machine-mode timer interrupt.
-extern void timervec();
-
-void pmpinit();
-void sys_clock_init();
-void sys_uart0_init();
 
 // entry.S jumps here in machine mode on stack0.
 void

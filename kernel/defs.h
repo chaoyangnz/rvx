@@ -13,6 +13,10 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
+// kernelvec.S
+// assembly code in kernelvec.S for machine-mode timer interrupt.
+extern void timervec();
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);

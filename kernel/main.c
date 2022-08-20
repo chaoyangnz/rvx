@@ -6,7 +6,6 @@
 
 volatile static int started = 0;
 
-extern void sys_uart_putc(uint8 uart_num, char c);
 extern char bss_start[], bss_end[];
 
 // start() jumps here in supervisor mode on all CPUs.

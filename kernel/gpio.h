@@ -1,7 +1,6 @@
 #ifndef __D1_GPIO_H__
 #define __D1_GPIO_H__
 
-#include "types.h"
 //d1 gpio base addr
 #define D1_GPIO_BASE    (0x02000000)
 
