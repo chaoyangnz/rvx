@@ -1,4 +1,4 @@
-#include "clk.h"
+#include "d1.h"
 #include "riscv.h"
 #include "defs.h"
 #include "bitfields.h"
@@ -185,7 +185,7 @@ void sys_clock_init(void) {
 void delay(unsigned long μs)
 {
   uint64 cycle1 = r_mtime();
-  uint64 cycle2 = cycle1 + μs * D1_REFERENCE_CLOCK;
+  uint64 cycle2 = cycle1 + μs * REFERENCE_CLOCK;
   do {
     cycle1 = r_mtime();
   } while(cycle2 >= cycle1);

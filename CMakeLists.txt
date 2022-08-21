@@ -58,8 +58,9 @@ add_executable(kernel
     kernel/kernelvec.S
     kernel/plic.c
     kernel/ramdisk.c
-    kernel/clk.c
-    kernel/gpio.c
+    kernel/d1_clock.c
+    kernel/d1_gpio.c
+    kernel/d1_uart.c
 )
 
 target_compile_options(kernel PRIVATE

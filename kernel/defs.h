@@ -162,11 +162,6 @@ void            uartputc(int);
 void            uartputc_sync(int);
 int             uartgetc(void);
 
-// uartinit
-void            sys_uart0_init(void);
-void            sys_uart_putc(uint8 uart_num, char c);
-char            sys_uart_getc(uint8 uart_num);
-
 // vm.c
 void            kvminit(void);
 void            kvminithart(void);
@@ -196,15 +191,27 @@ void            virtio_disk_init(void);
 void            virtio_disk_rw(struct buf *, int);
 void            virtio_disk_intr(void);
 
-// gpio.c
+//############################//
+//                            //
+//           D1 SOC           //
+//                            //
+//############################//
+
+
+// d1_gpio.c
 void            d1_set_gpio_mode(uint32 gpio_port, uint32 gpio_pin, uint16 mode);
 void            d1_set_gpio_val(uint32 gpio_port, uint32 gpio_pin, uint32 val);
 uint8           d1_get_gpio_val(uint32 gpio_port, uint32 gpio_pin);
 
-// clk.c
+// d1_clock.c
 void            sys_clock_init(void);
 void            clk_enable_module_uart(virtual_addr_t addr, uint8 uart_num);
 void            delay(unsigned long us);
+
+// d1_uart.c
+void            sys_uart0_init(void);
+void            sys_uart_putc(uint8 uart_num, char c);
+char            sys_uart_getc(uint8 uart_num);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
