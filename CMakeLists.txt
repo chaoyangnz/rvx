@@ -5,7 +5,7 @@ project(arvos C ASM)
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR riscv)
 set(CMAKE_CROSSCOMPILING 1)
-set(CMAKE_VERBOSE_MAKEFILE ON)
+#set(CMAKE_VERBOSE_MAKEFILE ON)
 
 ##################### CROSS COMPILING TOOL CHAIN ############################
 
@@ -61,11 +61,12 @@ add_executable(kernel
     kernel/d1_clock.c
     kernel/d1_gpio.c
     kernel/d1_uart.c
+    kernel/ramdisk.h
 )
 
 target_compile_options(kernel PRIVATE
-        $<$<COMPILE_LANGUAGE:C>:${C_FLAGS}>
-        $<$<COMPILE_LANGUAGE:ASM>:${ASM_FLAGS}>
+    $<$<COMPILE_LANGUAGE:C>:${C_FLAGS}>
+    $<$<COMPILE_LANGUAGE:ASM>:${ASM_FLAGS}>
 )
 target_link_options(kernel PRIVATE ${LD_FLAGS} -T ${CMAKE_SOURCE_DIR}/kernel/kernel.ld)
 
@@ -80,18 +81,36 @@ add_custom_command (TARGET kernel
     COMMENT "Make kernel binary & dump"
 )
 
-
 ############ user ############
 add_custom_command(
     OUTPUT ${CMAKE_SOURCE_DIR}/user/usys.S
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMAND perl user/usys.pl > user/usys.S
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Generate usys.S"
 )
 
 add_library(ulib user/ulib.c user/printf.c user/umalloc.c user/usys.S)
 target_compile_options(ulib PRIVATE ${CMAKE_C_FLAGS})
 
-set(USER_PROGRAMS init cat echo grep kill ln ls mkdir rm sh wc pyramid)
+set(USER_PROGRAMS
+    init
+    cat
+    echo
+    grep
+    kill
+    ln
+    ls
+    mkdir
+    rm
+    sh
+    wc
+    pyramid
+    forktest
+    grind
+    stressfs
+    usertests
+    zombie
+)
 set(USER_PROGRAM_PATHS)
 foreach(USER_PROGRAM ${USER_PROGRAMS})
     add_executable(${USER_PROGRAM} user/${USER_PROGRAM}.c)
@@ -106,16 +125,17 @@ endforeach()
 ############ mkfs ############
 # build mkfs cli
 add_custom_command(
-    OUTPUT ${CMAKE_SOURCE_DIR}/mkfs/mkfs
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT mkfs/mkfs
     COMMAND gcc -Werror -Wall -I. -o mkfs/mkfs mkfs/mkfs.c
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Build mkfs tool"
 )
 
-add_custom_target(ramdisk ALL DEPENDS ${CMAKE_SOURCE_DIR}/mkfs/mkfs ${USER_PROGRAM_PATHS})
-
-add_custom_command(TARGET ramdisk
-    POST_BUILD
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+add_custom_command(
+    OUTPUT  kernel/ramdisk.h
     COMMAND mkfs/mkfs fs.img README.md ${USER_PROGRAM_PATHS}
     COMMAND xxd -i fs.img > kernel/ramdisk.h
+    DEPENDS mkfs/mkfs ${USER_PROGRAM_PATHS}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Build ramdisk image"
 )
