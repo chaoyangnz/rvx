@@ -1,5 +1,5 @@
 {
-  "name": "arvos",
+  "name": "rvx",
   "version": "0.1.0",
   "description": "Arvos with xPack",
   "main": "",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chaoyangnz/arvos.git"
+    "url": "https://github.com/chaoyangnz/rvx.git"
   },
   "bugs": {
-    "url": "https://github.com/chaoyangnz/arvos/issues/"
+    "url": "https://github.com/chaoyangnz/rvx/issues/"
   },
-  "homepage": "https://github.com/chaoyangnz/arvos/",
+  "homepage": "https://github.com/chaoyangnz/rvx/",
   "keywords": [
     "xpack"
   ],

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BIN_PATH=build/debug
-BIN_FILE=${BIN_PATH}/arvos.bin
+BIN_FILE=${BIN_PATH}/rvx.bin
 
 PATH=$PATH:./xpacks/.bin
 

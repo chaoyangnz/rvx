@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.13)
 set(CMAKE_C_COMPILER_WORKS "STATIC_LIBRARY")
-project(arvos C ASM)
+project(rvx C ASM)
 
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR riscv)
@@ -77,7 +77,7 @@ add_custom_command (TARGET kernel
     COMMAND ${RISCV}-objdump -d -D kernel > ${CMAKE_PROJECT_NAME}.objdump
     COMMAND ${RISCV}-objdump -S kernel > ${CMAKE_PROJECT_NAME}.asm
     COMMAND ${RISCV}-objcopy -S -O binary kernel ${CMAKE_PROJECT_NAME}.bin
-    COMMAND hexdump ${CMAKE_PROJECT_NAME}.bin > arvos.hexdump
+    COMMAND hexdump ${CMAKE_PROJECT_NAME}.bin > rvx.hexdump
     COMMENT "Make kernel binary & dump"
 )
 

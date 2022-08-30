@@ -1,3 +1,6 @@
+# RVX
+
+A xv6 port on D1.
 
 ## OpenSBI
 
@@ -11,4 +14,4 @@ The ramdisk image is embedded in `ramdisk.h`. We have to build and generate a ne
 
 ## Serial port output with `\r\n`
 
-It is recommended to use vt100 term type. Otherwise, the new line will be not moved to the beginning of next line.
+It is recommended to right-click in MobaXterm, `change terminal settings..`, then tick `Implicit CR in every LF`. Otherwise, the new line will not be moved to the beginning of next line.

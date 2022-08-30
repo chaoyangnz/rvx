@@ -21,7 +21,7 @@ main()
     consoleinit();
     printfinit();
     printf("\n");
-    printf(" +-+-+-+-+-+\n |a|r|v|o|s|\n +-+-+-+-+-+\n");
+    printf(" +-+-+-+-+-+\n |r|v|x|o|s|\n +-+-+-+-+-+\n");
     printf("kernel is booting\n");
     printf("\n");
     kinit();         // physical page allocator

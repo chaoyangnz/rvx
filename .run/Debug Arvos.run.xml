@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Debug Arvos" type="CLion_Remote" version="1" remoteCommand="localhost:4321" symbolFile="$PROJECT_DIR$/build/debug/arvos" sysroot="">
+  <configuration default="false" name="Debug Arvos" type="CLion_Remote" version="1" remoteCommand="localhost:4321" symbolFile="$PROJECT_DIR$/build/debug/rvx" sysroot="">
     <debugger kind="GDB">D:\dev\rvxv6\xpacks\.bin\riscv-none-elf-gdb</debugger>
     <method v="2" />
   </configuration>
