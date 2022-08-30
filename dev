@@ -15,7 +15,7 @@ build() {
 #  make
 #  cd -
 
-  cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -B build/debug .
+  xpacks/.bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -B build/debug .
   cd build/debug
   make
   cd -

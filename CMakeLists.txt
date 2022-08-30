@@ -1,15 +1,16 @@
 cmake_minimum_required (VERSION 3.13)
 set(CMAKE_C_COMPILER_WORKS "STATIC_LIBRARY")
-project(rvx C ASM)
 
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR riscv)
 set(CMAKE_CROSSCOMPILING 1)
-#set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+project(rvx C ASM)
 
 ##################### CROSS COMPILING TOOL CHAIN ############################
-
-set(RISCV "/opt/riscv/bin/riscv64-unknown-elf")
+#set(RISCV "/opt/riscv/bin/riscv64-unknown-elf")
+set(RISCV "${CMAKE_SOURCE_DIR}/xpacks/.bin/riscv-none-elf")
 
 # Toolchain
 set(CMAKE_AR "${RISCV}-ar")
@@ -18,15 +19,17 @@ set(CMAKE_ASM_COMPILER "${RISCV}-gcc")
 set(CMAKE_C_COMPILER "${RISCV}-gcc")
 set(CMAKE_LINKER ${RISCV}-ld)
 set(CMAKE_C_FLAGS "")
+set(CMAKE_C_LINK_FLAGS "")
 set(CMAKE_ASM_FLAGS "")
 set(CMAKE_EXE_LINKER_FLAGS "")
 include_directories(${CMAKE_SOURCE_DIR})
 
+
 # kernel
 set(CMAKE_C_FLAGS_DEBUG "-ggdb")
 #set(CMAKE_EXECUTABLE_SUFFIX ".elf")
-set(C_FLAGS -Wall -Werror -O -fno-omit-frame-pointer -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -mno-relax -I. -fno-stack-protector -fno-pie -no-pie)
-set(ASM_FLAGS "")
+set(C_FLAGS -Wall -Werror -O -fno-omit-frame-pointer -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -mno-relax -I. -fno-stack-protector -fno-pie -no-pie -march=rv64gc -mabi=lp64d)
+set(ASM_FLAGS ${C_FLAGS})
 set(LD_FLAGS -z max-page-size=4096 ${C_FLAGS})
 
 add_executable(kernel
@@ -90,7 +93,7 @@ add_custom_command(
 )
 
 add_library(ulib user/ulib.c user/printf.c user/umalloc.c user/usys.S)
-target_compile_options(ulib PRIVATE ${CMAKE_C_FLAGS})
+target_compile_options(ulib PRIVATE ${C_FLAGS})
 
 set(USER_PROGRAMS
     init
