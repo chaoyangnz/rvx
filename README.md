@@ -2,6 +2,8 @@
 
 A xv6 port on D1.
 
+> Currently I run on Nezha.
+
 ## Prerequisite
 
 - [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
