@@ -2,6 +2,13 @@
 
 A xv6 port on D1.
 
+## Get started 
+
+npm install --global xpm@latest
+xpm install
+./dev build
+./dev start
+
 ## OpenSBI
 
 ```
