@@ -15,24 +15,24 @@ It should only include function implementations declared in defs.h and other sta
 
 - public structs: 
 
-declare            implement
-
-defs.h             *.h
+| declare  | implement |
+| -------- | --------- |
+| defs.h   | \*.h      |
 
 - public functions:
 
-declare            implement
-
-defs.h             *.c
+| declare  | implement |
+| -------- | --------- |
+| defs.h   | \*.c      |
 
 - public #define constants:
 
-declare            implement
-
-*.h                *.h
+| declare  | implement |
+| -------- | --------- |
+| \*.h     | \*.h      |
 
 - internal constants, variables (static), functions (static)
 
-declare            implement
-
-*.c                *.c
+| declare  | implement |
+| -------- | --------- |
+| \*.c     | \*.c      |
