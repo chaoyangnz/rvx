@@ -2,12 +2,18 @@
 
 A xv6 port on D1.
 
-## Get started 
+## Prerequisite
 
+- [xfel](https://github.com/xboot/xfel/releases)
+- [FTDI driver for USB-Serial](https://ftdichip.com/drivers/)
+
+## Get started 
+```
 npm install --global xpm@latest
 xpm install
 ./dev build
 ./dev start
+```
 
 ## OpenSBI
 
