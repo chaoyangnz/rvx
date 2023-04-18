@@ -4,8 +4,9 @@ A xv6 port on D1.
 
 ## Prerequisite
 
+- [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
 - [xfel](https://github.com/xboot/xfel/releases)
-- [FTDI driver for USB-Serial](https://ftdichip.com/drivers/)
+- [FTDI driver for USB-Serial](https://ftdichip.com/drivers/) or [Zadig](https://zadig.akeo.ie/)
 
 ## Get started 
 ```
