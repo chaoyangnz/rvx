@@ -1,7 +1,7 @@
 {
   "name": "rvx",
   "version": "0.1.0",
-  "description": "Arvos with xPack",
+  "description": "RVX with xPack",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,7 @@
   ],
   "author": {
     "name": "Chao Yang",
-    "email": "chao@yang.to",
+    "email": "chao@yang.so",
     "url": "<author-url>"
   },
   "license": "MIT",
