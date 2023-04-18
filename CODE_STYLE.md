@@ -2,7 +2,7 @@
 
 ## headers
 
-For headers per component, it should only include `struct` declarations and `#define` constants. Some exceptions also include static function implementations if any.
+For headers per component, it should only include `struct` definitions and `#define` constants. Some exceptions also include static function implementations if any.
 
 defs.h includes all function and struct declarations distributed in other .h files.
 
