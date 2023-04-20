@@ -15,7 +15,7 @@ build() {
 #  make
 #  cd -
 
-  xpacks/.bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -B build/debug .
+  ./xpacks/.bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -B build/debug .
   cd build/debug
   make
   cd -
@@ -34,6 +34,7 @@ start() {
   sudo xfel write 0x40000000 ${BIN_FILE}
   sudo xfel exec 0x40000000
 #  sudo xfel exec 0x80000000
+  echo 'Kernel is running at 0x40000000, check Serial port output'
 }
 
 stop() {

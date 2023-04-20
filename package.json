@@ -20,17 +20,20 @@
   "author": {
     "name": "Chao Yang",
     "email": "chao@yang.so",
-    "url": "<author-url>"
+    "url": "https://chao.yang.so"
   },
   "license": "MIT",
   "config": {},
-  "dependencies": {},
   "devDependencies": {
-    "@xpack-dev-tools/riscv-none-elf-gcc": "12.1.0-2.1",
-    "@xpack-dev-tools/openocd": "0.11.0-4.1",
-    "@xpack-dev-tools/cmake": "3.21.6-1.1"
+    "xpm": "^0.15.0"
   },
   "xpack": {
-    "minimumXpmRequired": "0.13.7"
+    "minimumXpmRequired": "0.14.0",
+    "dependencies": {},
+    "devDependencies": {
+      "@xpack-dev-tools/riscv-none-elf-gcc": "12.1.0-2.1",
+      "@xpack-dev-tools/openocd": "0.11.0-4.1",
+      "@xpack-dev-tools/cmake": "3.21.6-1.1"
+    }
   }
 }

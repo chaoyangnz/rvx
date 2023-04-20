@@ -7,16 +7,48 @@ A xv6 port on D1.
 ## Prerequisite
 
 - [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
-- [xfel](https://github.com/xboot/xfel/releases)
-- [FTDI driver for USB-Serial](https://ftdichip.com/drivers/) or [Zadig](https://zadig.akeo.ie/) or `sudo apt-get install libusb-1.0-0-dev`
+
+Linux or WSL:
+- [xfel](https://github.com/xboot/xfel/tree/master/docs#linux-platform-1)
+- USB-UART driver: `sudo apt-get install libusb-1.0-0-dev`
+
+Windows:
+- [xfel](https://github.com/xboot/xfel/releases) (we don't use xfel in Windows actually)
+- [Driver for FTDI USB-UART converter](https://ftdichip.com/drivers/)
+- [FEL Driver for Allwinner Technology sunxi SoC OTG](https://zadig.akeo.ie/), this one is for FEL mode
+
+Both: usbipd
+
+https://blog.golioth.io/program-mcu-from-wsl2-with-usb-support/
 
 ## Get started 
+
+In Windows:
+
+```
+usbipd wsl list
+# find the bus_id of vid 1f3a:efe8
+usbipd wsl -a -b 1-8
+```
+
+Now open a Serial session in Mobxterm, select serial device "COM3 (USB Serial Port (COM3))", baud rate is 115200bps
+
+In WSL Ubuntu:
+
+```
+lsusb
+# an additional usb device
+# Bus 001 Device 004: ID 1f3a:efe8 Allwinner Technology sunxi SoC OTG connector in FEL/flashing mode
+```
+
 ```
 npm install --global xpm@latest
 xpm install
 ./dev build
 ./dev start
 ```
+
+check the serial port output in the above Mobxterm session tab.
 
 ## OpenSBI
 
