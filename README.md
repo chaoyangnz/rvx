@@ -4,12 +4,54 @@ A xv6 port on D1.
 
 > Currently I run on Nezha.
 
+
+# Development (Ubuntu)
+
 ## Prerequisite
 
 - [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
 
-Linux or WSL:
-- [xfel](https://github.com/xboot/xfel/tree/master/docs#linux-platform-1)
+Unbuntu:
+- USB-UART driver: `sudo apt install libusb-1.0-0-dev`
+- build [xfel](https://github.com/xboot/xfel/tree/master/docs#linux-platform-1)
+- COM GUI: [cutecom]: `sudo apt install cutecom`
+
+## Validation
+
+- `lsusb`
+
+Bus 001 Device 004: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 005: ID 1f3a:efe8 Allwinner Technology sunxi SoC OTG connector in FEL/flashing mode
+
+`sudo chmod a+rw /dev/ttyUSB0`
+
+- `sudo xfel version`
+
+AWUSBFEX ID=0x00185900(D1/F133) dflag=0x44 dlength=0x08 scratchpad=0x00045000
+
+## Build
+
+```
+npm install --global xpm@latest
+xpm install
+./dev build
+```
+
+Now open a Serial session in `Cutecom` GUI, select serial device "/dev/ttyUSB0", baud rate is 115200bps
+
+Run `./dev start`
+
+See UTART output in `Cutecom`.
+
+
+# Development (Windows + WSL)
+
+## Prerequisite
+
+- [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
+
+WSL:
+- build [xfel](https://github.com/xboot/xfel/tree/master/docs#linux-platform-1)
 - USB-UART driver: `sudo apt-get install libusb-1.0-0-dev`
 
 Windows:
@@ -21,7 +63,7 @@ Both: usbipd
 
 https://blog.golioth.io/program-mcu-from-wsl2-with-usb-support/
 
-## Get started 
+## Validation
 
 In Windows:
 
@@ -41,6 +83,8 @@ lsusb
 # Bus 001 Device 004: ID 1f3a:efe8 Allwinner Technology sunxi SoC OTG connector in FEL/flashing mode
 ```
 
+## BUild
+
 ```
 npm install --global xpm@latest
 xpm install
@@ -49,6 +93,8 @@ xpm install
 ```
 
 check the serial port output in the above Mobxterm session tab.
+
+# FAQ
 
 ## OpenSBI
 
