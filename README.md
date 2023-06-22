@@ -9,7 +9,7 @@ A xv6 port on D1.
 
 ## Prerequisite
 
-- [MangoPI MQ Pro](https://mangopi.org/mangopi_mqpro)
+- [Nazhe](https://d1.docs.aw-ol.com/en/d1_dev/)
 
 Unbuntu:
 - USB-UART driver: `sudo apt install libusb-1.0-0-dev`
@@ -23,7 +23,7 @@ Unbuntu:
 Bus 001 Device 004: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
 Bus 001 Device 005: ID 1f3a:efe8 Allwinner Technology sunxi SoC OTG connector in FEL/flashing mode
 
-`sudo chmod a+rw /dev/ttyUSB0`
+`sudo adduser <user> dialout`
 
 - `sudo xfel version`
 
@@ -94,18 +94,3 @@ xpm install
 
 check the serial port output in the above Mobxterm session tab.
 
-# FAQ
-
-## OpenSBI
-
-```
-make PLATFORM=generic FW_FDT_PATH=../d1.dtb CROSS_COMPILE=../riscv64-linux-x86_64-20200528/bin/riscv64-unknown-linux-gnu- BUILD_INFO=y FW_TEXT_ADDR=0x80000000 FW_JUMP_ADDR=0x40000000
-```
-
-## Ramdisk
-
-The ramdisk image is embedded in `ramdisk.h`. We have to build and generate a new one automatically updating the header.
-
-## Serial port output with `\r\n`
-
-It is recommended to right-click in MobaXterm, `change terminal settings..`, then tick `Implicit CR in every LF`. Otherwise, the new line will not be moved to the beginning of next line.
